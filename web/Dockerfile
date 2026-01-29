@@ -9,7 +9,8 @@ WORKDIR /app
 COPY packages ./packages
 COPY web ./web
 WORKDIR /app/web
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile \
+	&& pnpm approve-builds contentlayer esbuild protobufjs
 
 # 2) Build the app
 FROM node:20-alpine AS builder
@@ -29,6 +30,10 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 EXPOSE 3000
+
+# Ensure non-root user owns app and results directory to avoid permission issues on bind mounts
+RUN mkdir -p /app/web/results && chown -R node:node /app
+USER node
 
 # Copy build artifacts and runtime deps
 COPY --from=builder /app/web/.next ./.next

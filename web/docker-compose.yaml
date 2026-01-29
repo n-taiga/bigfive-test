@@ -7,6 +7,9 @@ services:
       dockerfile: web/Dockerfile
     ports:
       - '3000:3000'
+    volumes:
+      # Persist JSON result files to host for easy access
+      - ./results:/app/web/results
     env_file:
       - .env.local
     environment:
