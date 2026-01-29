@@ -1,6 +1,20 @@
 version: '3.9'
 
 services:
+  app:
+    build:
+      context: ..
+      dockerfile: web/Dockerfile
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env.local
+    environment:
+      # Ensure the app uses the Mongo container hostname
+      DB_URL: mongodb://root:example@mongodb:27017
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo
     ports:
