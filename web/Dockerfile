@@ -26,21 +26,30 @@ RUN pnpm build
 FROM node:20-alpine AS runner
 RUN corepack enable
 WORKDIR /app/web
+
+# ===== UID/GID 同期対応 =====
+ARG UID=1001
+ARG GID=1001
+
+RUN addgroup -g $GID appgroup \
+ && adduser -D -u $UID -G appgroup appuser
+
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 EXPOSE 3000
 
-# Ensure non-root user owns app and results directory to avoid permission issues on bind mounts
-RUN mkdir -p /app/web/results && chown -R node:node /app
-USER node
+# results dir
+RUN mkdir -p /app/web/results \
+ && chown -R appuser:appgroup /app
 
-# Copy build artifacts and runtime deps
+USER appuser
+
+# Copy build artifacts
 COPY --from=builder /app/web/.next ./.next
 COPY --from=builder /app/web/public ./public
 COPY --from=builder /app/web/package.json ./package.json
 COPY --from=builder /app/web/node_modules ./node_modules
-# Include local packages in case runtime code references them
 COPY --from=builder /app/packages ../packages
 
 CMD ["pnpm", "start"]
