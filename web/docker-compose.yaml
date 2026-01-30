@@ -4,13 +4,13 @@ services:
       context: ..
       dockerfile: web/Dockerfile
       args:
-        UID: 1001
-        GID: 1001
+        UID: ${UID:-1001}
+        GID: ${GID:-1001}
     ports:
       - '3000:3000'
     volumes:
-      # Persist JSON result files to host for easy access
-      - ./results:/app/web/results
+      # Persist JSON result files to host sibling results directory
+      - ../results:/app/results
     env_file:
       - .env.local
     environment:

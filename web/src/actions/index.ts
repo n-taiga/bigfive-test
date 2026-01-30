@@ -9,7 +9,7 @@ import {
   getInfo,
   getTemplate
 } from '@bigfive-org/results';
-import type { Scores } from '@bigfive-org/results/build/src/types';
+import type { Scores } from '@bigfive-org/results/build/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -79,7 +79,7 @@ export async function saveTest(testResult: DbResult) {
     const scores = processAnswers(testResult.answers) as Scores;
     const template = await getTemplate(selectedLanguage);
     const computedResults = generateResult(scores, template);
-    const resultsDir = path.join(process.cwd(), 'results');
+    const resultsDir = path.join(process.cwd(), '..', 'results');
     const filePath = path.join(resultsDir, `${result.insertedId.toString()}.json`);
     const payload = {
       results: computedResults,

@@ -2,7 +2,7 @@
 
 import { heading } from '@/components/primitives';
 import Link from 'next/link';
-import type { Facet } from '@bigfive-org/results/build/src/types';
+import type { Facet } from '@bigfive-org/results/build/types';
 import { BarChartCompare } from '@/components/bar-chart-generic';
 
 interface DomainProps {

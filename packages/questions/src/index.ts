@@ -1,5 +1,4 @@
 import languages, { Language, LanguageCode } from './data/languages';
-import path from 'path';
 
 export async function getItems(languageCode: LanguageCode = 'en'): Promise<Question[]> {
   try {

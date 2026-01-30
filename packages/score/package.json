@@ -2,10 +2,10 @@
   "name": "@bigfive-org/score",
   "version": "1.0.1",
   "description": "Calculate score for big five tests",
-  "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "files": [
-    "build/src/"
+    "build/"
   ],
   "keywords": [
     "bigfive",
