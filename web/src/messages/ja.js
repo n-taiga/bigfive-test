@@ -186,12 +186,12 @@ const japanese = {
     name: '名前'
   },
   results: {
-    theBigFive: 'ビッグファイブ',
+    theBigFive: '',
     score: 'スコア',
-    important: '重要！',
-    saveResults: '次のIDを保存して、後で結果を確認するか、 ',
-    compare: '比較する',
-    toOthers: '他人に自分自身',
+    important: '',
+    saveResults: ' ',
+    compare: '',
+    toOthers: '',
     seo: {
       title: 'BigFive性格検査の結果',
       description:

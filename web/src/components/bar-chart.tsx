@@ -72,7 +72,7 @@ export const BarChart = ({ max, results }: BarChartProps) => {
         type='bar'
         options={options}
         series={series}
-        height={350}
+        height={280}
         width='100%'
       />
     </>

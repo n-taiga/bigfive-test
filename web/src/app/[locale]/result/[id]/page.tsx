@@ -86,6 +86,13 @@ const Results = ({ report, showExpanded }: ResultsProps) => {
         &nbsp;
         {t('toOthers')}
       </div>
+      <div className='flex mt-5 justify-end w-full gap-x-1 print:hidden'>
+        <ShareBar />
+      </div>
+      <div className='flex mt-0'>
+        <h1 className={title()}>{t('theBigFive')}</h1>
+      </div>
+      <BarChart max={80} results={report.results} />
       <div className='flex mt-4'>
         <Snippet
           hideSymbol
@@ -96,13 +103,19 @@ const Results = ({ report, showExpanded }: ResultsProps) => {
           {report.id}
         </Snippet>
       </div>
-      <div className='flex mt-5 justify-end w-full gap-x-1 print:hidden'>
-        <ShareBar />
+      <div className='mt-10 flex justify-center'>
+        <div className='w-full max-w-5xl rounded-xl border border-default-200 bg-white shadow-sm p-4'>
+          <iframe
+            title='Feedback form'
+            src='https://docs.google.com/forms/d/e/1FAIpQLSf1H4mN3cCSPPOYY69KWLadKKZKk4T9EQbjpbsSdGkYPEjh4A/viewform?embedded=true'
+            className='w-full'
+            style={{ minHeight: '1450px' }}
+            loading='lazy'
+          >
+            読み込んでいます…
+          </iframe>
+        </div>
       </div>
-      <div className='flex mt-10'>
-        <h1 className={title()}>{t('theBigFive')}</h1>
-      </div>
-      <BarChart max={120} results={report.results} />
       <DomainTabs
         results={report.results}
         showExpanded={!!showExpanded}

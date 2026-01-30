@@ -1,9 +1,9 @@
 import { getItems, getInfo } from '@bigfive-org/questions';
 import type { LanguageCode } from '@bigfive-org/questions/build/data/languages';
-import { Survey } from './survey';
 import { saveTest } from '@/actions';
 import { unstable_setRequestLocale, getTranslations } from 'next-intl/server';
 import { TestLanguageSwitch } from './test-language-switch';
+import { GatedSurvey } from './gated-survey';
 
 const questionLanguages = getInfo().languages;
 
@@ -34,7 +34,7 @@ export default async function TestPage({
           language={language}
         />
       </div>
-      <Survey
+      <GatedSurvey
         questions={shuffledQuestions}
         nextText={t('next')}
         prevText={t('back')}
